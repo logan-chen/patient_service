@@ -13,9 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
-
+# from rest_framework.documentation import include_docs_urls
+import xadmin
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'xadmin/', xadmin.site.urls),
+
+    # url(r'^admin/', admin.site.urls),
+    # url(r'^users/', include('user.urls')),
+    # url(r'^oauth/', include('oauth.urls')),
+    # url(r'^areas/', include('areas.urls')),
+    # url(r'^goods/', include('goods.urls')),
+    # url(r'^cart/', include('carts.urls')),
+    # url(r'^orders/', include('order.urls')),
+    # url(r'^pay/', include('pay.urls')),
 ]
