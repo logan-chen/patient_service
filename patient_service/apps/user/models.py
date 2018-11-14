@@ -36,6 +36,10 @@ class Patient(models.Model):
         (0, '男'),
         (1, '女')
     )
+    JOIN_CHOICES = (
+        (0, '否'),
+        (1, '是')
+    )
     recommend_id = models.ForeignKey(to="Doctor", to_field="phone", verbose_name='推荐医生', blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=10, verbose_name="姓名")
     phone = models.CharField(max_length=11, verbose_name="手机号", unique=True)
@@ -53,11 +57,11 @@ class Patient(models.Model):
     disease_info = models.CharField(max_length=50, verbose_name='具体病症')
     treatment_info = models.CharField(max_length=100, verbose_name="用药情况", blank=True)
     # 病例图片
-    join = models.CharField(max_length=1, default='否', verbose_name='是否入组')
+    join = models.SmallIntegerField(choices=JOIN_CHOICES, default=0, verbose_name='是否入组')
     case_img = models.ImageField(upload_to='b_img', verbose_name="病例图片")
     status = models.SmallIntegerField(choices=STATUS_CHOICES, default=2, verbose_name='用户状态审核')
     user_id = models.OneToOneField(to="User", to_field="type_id", default=0, unique=True, verbose_name='用户身份', on_delete=models.CASCADE)
-    create_time = models.DateTimeField(auto_now_add=True, verbose_name='创新时间')
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     update_time = models.DateTimeField(auto_now=True, verbose_name='审核时间')
 
     class Meta:
@@ -90,11 +94,11 @@ class Doctor(models.Model):
     age = models.IntegerField(verbose_name="年龄")
     city_info = models.CharField(max_length=20, verbose_name="所在地区")
     pic = models.ImageField(upload_to='d_img', verbose_name="头像图片")
-    department = models.CharField(max_length=10, verbose_name='科室')
+    department = models.CharField(max_length=10, verbose_name='部门')
     affiliated_hospital = models.CharField(max_length=20, verbose_name='所属医院')
     status = models.SmallIntegerField(choices=STATUS_CHOICES, default=2, verbose_name='用户状态审核')
     user_id = models.OneToOneField(to="User", to_field="type_id", default=1, unique=True, verbose_name='用户身份', on_delete=models.CASCADE)
-    create_time = models.DateTimeField(auto_now_add=True, verbose_name='创新时间')
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     update_time = models.DateTimeField(auto_now=True, verbose_name='审核时间')
 
     class Meta:
@@ -128,7 +132,7 @@ class Enterprise(models.Model):
     grade = models.IntegerField(verbose_name="等级", default=0)
     status = models.SmallIntegerField(choices=STATUS_CHOICES, default=2, verbose_name='用户状态审核')
     user_id = models.OneToOneField(to="User", to_field="type_id", default=2, unique=True, verbose_name='用户身份', on_delete=models.CASCADE)
-    create_time = models.DateTimeField(auto_now_add=True, verbose_name='创新时间')
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     update_time = models.DateTimeField(auto_now=True, verbose_name='审核时间')
 
     class Meta:

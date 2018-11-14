@@ -18,7 +18,7 @@ from django.contrib import admin
 # from rest_framework.documentation import include_docs_urls
 import xadmin
 urlpatterns = [
-    url(r'xadmin/', xadmin.site.urls),
+    url(r'^xadmin/', xadmin.site.urls),
 
     # url(r'^admin/', admin.site.urls),
     # url(r'^users/', include('user.urls')),
