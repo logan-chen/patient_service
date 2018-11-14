@@ -14,11 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from dashing.utils import router
+from utils.widgets import CustomWidget
+router.register(CustomWidget, 'custom_widget')
+
 from django.contrib import admin
 # from rest_framework.documentation import include_docs_urls
 import xadmin
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
+    url(r'^dashboard/',include(router.urls)),
+    url(r'^verifications', include('verifications.urls'))
 
     # url(r'^admin/', admin.site.urls),
     # url(r'^users/', include('user.urls')),
