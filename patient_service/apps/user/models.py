@@ -127,6 +127,7 @@ class Enterprise(models.Model):
     o_contact = models.CharField(max_length=20, verbose_name='其他联系方式')
     service = models.CharField(max_length=10, verbose_name='所需服务', blank=True)
     position = models.CharField(max_length=10, verbose_name='职位', blank=True)
+    department = models.CharField(max_length=10, verbose_name='部门')
     products = models.CharField(max_length=20, verbose_name='公司产品', blank=True)
     address = models.CharField(max_length=20, verbose_name="公司地址")
     grade = models.IntegerField(verbose_name="等级", default=0)
